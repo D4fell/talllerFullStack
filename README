@@ -15,7 +15,9 @@ TALLER FULL STACK
     - USER: <usuario de la conexión>
     - PASSWORD: <contraseña>
 
-5. Para correr el proyecto 
+5. para poblar la base de datos desde MySQL Workbench se importan los scripts alojados en "docs/scripts_db" y correr cada uno de ellos o simplemente desde postman crear los registros que se necesite.
+
+6. Para correr el proyecto 
     - npm start
     - npm run test (modo pruebas)
 
