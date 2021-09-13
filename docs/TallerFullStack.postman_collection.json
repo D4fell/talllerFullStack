@@ -1,0 +1,306 @@
+{
+	"info": {
+		"_postman_id": "d5aa2264-f79a-4251-bea3-4d03e626bb3d",
+		"name": "TallerFullStack",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "getUsers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}app/users/",
+							"host": [
+								"{{url}}app"
+							],
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\":\"Prueba\",\r\n    \"lastName\":\"usuario\",\r\n    \"userName\":\"prusuario\",\r\n    \"password\":\"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}app/users/registry",
+							"host": [
+								"{{url}}app"
+							],
+							"path": [
+								"users",
+								"registry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\": \"prusuario\" ,\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}app/auth/login",
+							"host": [
+								"{{url}}app"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addUserCoin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlhdCI6MTYzMTE2MzI0MCwiZXhwIjoxNjMxMTY0NDQwfQ.djeLQbrgutWEhs3pi4vKdrD-cHPcW1c9REBx3HzzEsg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\": \"prusuario\",\r\n    \"newCoin\": \"BTC\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}app/users/addUserCoin/4",
+							"host": [
+								"{{url}}app"
+							],
+							"path": [
+								"users",
+								"addUserCoin",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "preferedCoin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlhdCI6MTYzMDk5MjgxOCwiZXhwIjoxNjMwOTk0MDE4fQ.Tbl6tAnKkfZ2oOv4ZngNL9QKJwheeNjnTtztbfykaYw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\": \"prusuario\",\r\n    \"prefered\": \"BTC\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}app/users/preferedCoin/2",
+							"host": [
+								"{{url}}app"
+							],
+							"path": [
+								"users",
+								"preferedCoin",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userCoins",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlhdCI6MTYzMTE2MzI0MCwiZXhwIjoxNjMxMTY0NDQwfQ.djeLQbrgutWEhs3pi4vKdrD-cHPcW1c9REBx3HzzEsg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}app/users/getUserCoins/4",
+							"host": [
+								"{{url}}app"
+							],
+							"path": [
+								"users",
+								"getUserCoins",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPreferedCoin",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEwMDAsImlhdCI6MTYzMTE2NTI1NiwiZXhwIjoxNjMxMTY2NDU2fQ.5QdpG8WdrZn5L60SgrmkLPj3WRj9yPYDnmJL6no7HSk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}app/users/getPreferedCoin/1",
+							"host": [
+								"{{url}}app"
+							],
+							"path": [
+								"users",
+								"getPreferedCoin",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "topCoins",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlhdCI6MTYzMDk5ODUxMiwiZXhwIjoxNjMwOTk5NzEyfQ.uw0lysiKHHbgzJ2kk4R_42EyxkG3xpKwTgciqcudvLM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}app/users/topCoins/1/asc",
+							"host": [
+								"{{url}}app"
+							],
+							"path": [
+								"users",
+								"topCoins",
+								"1",
+								"asc"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Coins",
+			"item": [
+				{
+					"name": "getCoins",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}app/coins/",
+							"host": [
+								"{{url}}app"
+							],
+							"path": [
+								"coins",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createCoin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\":\"BTC\",\r\n    \"price\":52700,\r\n    \"name\":\"BITCOIN\",\r\n    \"source\":\"JAPON\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}app/coins/registry",
+							"host": [
+								"{{url}}app"
+							],
+							"path": [
+								"coins",
+								"registry"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:8000"
+		}
+	]
+}

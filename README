@@ -1,0 +1,34 @@
+TALLER FULL STACK
+
+1. Antes de iniciar, se debe tener instalado en el equipo:
+    - node -> se puede descargar de: https://nodejs.org/en/
+    - MySQL -> se puede descargar de: https://dev.mysql.com/downloads/installer/
+
+2. Antes de levantar el proyecto se deben instalar todas las dependenciar
+    - npm install
+
+3. Teniendo MySQL Workbench se crea la base de datos para este caso se llama 'tallerDB' con el siguiente comando:
+    - CREATE database tallerDB
+
+4. Se deben configurar las credenciales para poderse conectar a la base de datos revisar el archivo 'config/db.config.js' y ahí verificar las siguientes variables
+    - HOST: <host de la conexión a la base de datos>
+    - USER: <usuario de la conexión>
+    - PASSWORD: <contraseña>
+
+5. Para correr el proyecto 
+    - npm start
+    - npm run test (modo pruebas)
+
+Para instalar jest de forma global
+    - npm install -g jest
+
+Para poder correr las pruebas unitarias por separado
+    - jest src/__test__/user.test.js
+
+Para verificar el cubrimiento de las pruebas
+    - jest --coverage
+
+
+sequelize DOCS => https://sequelize.org/
+jest DOCS => https://jestjs.io/docs/getting-started
+

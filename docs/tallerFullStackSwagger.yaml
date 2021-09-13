@@ -1,0 +1,273 @@
+openapi: 3.0.1
+info:
+  title: Taller fullStack
+  description: Taller realizado con el fin de conocer los temas requeridos para comunidad empresarial que se maneja hoy en día.
+  version: 1.0.0
+tags:
+  - name: users
+    description: Este EndPoint maneja toda la información relacionada con la información de los usuarios.
+  - name: coins
+    description: Este EndPoint maneja toda la información relacionada con la información de las monedas.
+  - name: auth
+    description: Este EndPoint controla la autenticación de los usuarios a la API.
+paths:
+  /app/users/:
+    get:
+      tags:
+        - users
+      summary: Obtiene todos los usuarios almacenados en la Base de datos.
+      responses:
+        200:
+          description: Se obtiene un JSON con los registros de los usuarios registrados en la Base de Datos.
+        400:
+          description: No se han encontrado usuarios registrados.
+        500:
+          description: Ha ocurrido un error intentando obtener la lista de usuarios.
+  /app/users/registry:
+    post:
+      tags: 
+        - users
+      summary: Crea un nuevo usuario en la Base de datos.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BodyUsersRegistry'
+        required: true
+      responses:
+        200:
+          description: Usuario registrado exitosamente
+        400:
+          description: La contraseña debe tener una longitud de 8 caracteres
+        500:
+          description: Ha ocurrido un error creando el usuario!
+  /app/users/addUserCoin/{userID}:
+    post:
+      tags: 
+        - users
+      summary: Asocia una nueva moneda al usuario.
+      parameters:
+        - $ref: '#/components/parameters/token'
+        - $ref: '#/components/parameters/userID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BodyAddCoin'
+        required: true
+      responses:
+        200:
+          description: Se ha agregado la moneda exitosamente
+        400:
+          description: No se ha encontrado el usuario solicitado o moneda que intenta agregar
+        401:
+          description: En este momento no puede agregar monedas al usuario solicitado
+        500:
+          description: Ha ocurrido un error al momento de intentar agregar una moneda a un usuario
+  /app/users/preferedCoin/{userID}:
+    post:
+      tags: 
+        - users
+      summary: Asocia una nueva moneda favorita al usuario.
+      parameters:
+        - $ref: '#/components/parameters/token'
+        - $ref: '#/components/parameters/userID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BodyPreferedCoin'
+        required: true
+      responses:
+        200:
+          description: Se ha agregado la moneda favorita exitosamente
+        400:
+          description: No se ha encontrado el usuario solicitado o la moneda que intenta establecer como favorita
+        401:
+          description: En este momento no puede agregar moneda favorita al usuario solicitado
+        500:
+          description: Ha ocurrido un error al momento de intentar agregar una moneda favorita a un usuario
+  /app/users/getPreferedCoin/{userID}:
+    get:
+      tags: 
+        - users
+      summary: Obtiene la moneda favorita del usuario.
+      parameters:
+        - $ref: '#/components/parameters/token'
+        - $ref: '#/components/parameters/userID'
+      responses:
+        200:
+          description: Se obtiene un JSON con la información de la moneda favorita del usuario.
+        400:
+          description: No se ha encontrado el usuario solicitado o monedas asociadas al usuario favorita.
+        401:
+          description: En este momento no se puede consultar la moneda favorita del usuario solicitado.
+        500:
+          description: Ha ocurrido un error intentando obtener el usuario solicitado
+  /app/users/getUserCoins/{userID}:
+    get:
+      tags: 
+        - users
+      summary: Obtiene todas las monedas asociadas al usuario.
+      parameters:
+        - $ref: '#/components/parameters/token'
+        - $ref: '#/components/parameters/userID'
+      responses:
+        200:
+          description: Se obtiene un JSON con la información de todas las monedas asociadas al usuario.
+        400:
+          description: No se han encontrado monedas asociadas a este usuario.
+        401:
+          description: En este momento no se pueden coonsultar las monedas asociadas al usuario solicitado.
+        500:
+          description: Ha ocurrido un error intentando obtener la lista de monedas asociadas a un usuario.
+  /app/users/topCoins/{userID}/{order}:
+    get:
+      tags: 
+        - users
+      summary: Obtiene el top 3 de las monedas asociadas al usuario.
+      description: El order puede ser asc (ascendete) o desc (descendente) según se desee.
+      parameters:
+        - $ref: '#/components/parameters/token'
+        - $ref: '#/components/parameters/userID'
+        - $ref: '#/components/parameters/order'
+      responses:
+        200:
+          description: Se obtiene un JSON con el top 3 de las monedas asociadas al usuario comparadas con el valor de su moneda favorita.
+        400:
+          description: No se han encontrado monedas asociadas al usuario.
+        401:
+          description: En este momento no se puede realizar el top 3 a las monedas del usuario solicitado.
+        500:
+          description: Ha ocurrido un error intentando obtener la lista de monedas asociadas a un usuario.
+  /app/coins/:
+    get:
+      tags:
+        - coins
+      summary: Obtiene todas las monedas almacenadas en la Base de datos.
+      responses:
+        200:
+          description: Se obtiene un JSON con los registros de las monedas registradas en la Base de Datos.
+        400:
+          description: No se han encontrado monedas registradas.
+        500:
+          description: Ha ocurrido un error intentando obtener la lista de monedas.
+  /app/coins/registry:
+    post:
+      tags: 
+        - coins
+      summary: Crea una nueva moneda en la Base de datos.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BodyCoinRegistry'
+        required: true
+      responses:
+        200:
+          description: Se obtiene un JSON con la información de la nueva moneda registrada en la Base de Datos
+        500:
+          description: Ha ocurrido un error creando la moneda!.
+  /app/auth/login:
+    post:
+      tags: 
+        - auth
+      summary: Crea un nuevo usuario en la Base de datos.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BodyLoginUser'
+        required: true
+      responses:
+        200:
+          description: Se obtiene el token que va a permitir al usuario hacer uso de las diferentes rutas
+        400:
+          description: El usuario ingresado no existe!.
+        401:
+          description: Contraseña invalida.
+        500:
+          description: Ha ocurrido un error autenticando el usuario!.
+
+components:
+  parameters:
+    token:
+      name: token
+      in: header
+      description: Token de autenticación generado al momento de hacer login.
+      required: true
+      schema:
+          type: string
+          additionalProperties: false
+    userID:
+      name: userID
+      in: path
+      description: ID identificador del usuario en la Base de datos
+      required: true
+      schema:
+        type: integer
+    order:
+      name: order
+      in: path
+      description: Distribución en la que se quiere ordenar el top 3 de monedas asociadas al usuario (asc o desc)
+      required: true
+      schema:
+        type: string
+  schemas:
+    BodyUsersRegistry:
+      type: object
+      properties:
+        firstName:
+          type: string
+          description: Primer nombre o nombres del usuario.
+        lastName:
+          type: string
+          description: Appellido o Appellidos del usuario.
+        userName:
+          type: string
+          description: Nombre de usuario con el que se va a loguear el usuario.
+        password:
+          type: string
+          description: Contraseña con lA que se va a loguear el usuario, No superior a 8 caracteres.
+    BodyAddCoin:
+      type: object
+      properties:
+        userName:
+          type: string
+          description: Nombre de usuario con el que se va a loguear el usuario.
+        newCoin: 
+          type: string
+          description: Código de la moneda que se va a agregar al usuario.
+    BodyPreferedCoin:
+      type: object
+      properties:
+        userName:
+          type: string
+          description: Nombre de usuario con el que se va a loguear el usuario.
+        prefered: 
+          type: string
+          description: Código de la moneda que se va a agregar al usuario como favorita
+    BodyCoinRegistry:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Código que identifica a la moneda.
+        price:
+          type: string
+          description: Precio actual de la moneda.
+        name:
+          type: string
+          description: Nombre completo de la moneda.
+        source:
+          type: string
+          description: Fuente de la moneda.
+    BodyLoginUser:
+      type: object
+      properties:
+        userName:
+          type: string
+          description: Nombre de usuario con el que se va a loguear el usuario.
+        password: 
+          type: string
+          description: Contraseña que se le diligencio al suario al momento de ser creado, no debe ser superior a 8 caracteres
