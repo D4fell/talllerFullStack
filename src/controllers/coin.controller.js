@@ -19,6 +19,26 @@ exports.getCoins = (req, res) => {
     })
 }
 
+exports.getCoinCode = (req, res) => {
+
+    let codeCoin = req.params.code;
+
+    COIN.findOne({
+        where: { code: codeCoin }
+    }).then(coin => {
+
+        if (!coin ) { 
+            return res.status(400).send({ message: 'No se ha encontrado la moneda que intenta consultar' });
+        }
+
+        return res.status(200).send(coin);              
+
+    })
+    .catch( error =>{
+        res.status(500).send({ message: 'Ha ocurrido un error al momento de consultar una moneda'})
+    })
+}
+
 exports.createCoin = (req, res) => {
     
     const coin = {

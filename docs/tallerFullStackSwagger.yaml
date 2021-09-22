@@ -152,6 +152,20 @@ paths:
           description: No se han encontrado monedas registradas.
         500:
           description: Ha ocurrido un error intentando obtener la lista de monedas.
+  /app/coins/getCoin/{code}:
+    get:
+      tags:
+        - coins
+      summary: Obtiene la información de una moneda almacenada en la Base de datos por su código.
+      parameters:
+        - $ref: '#/components/parameters/code'
+      responses:
+        200:
+          description: Se obtiene un JSON con la información de la moneda registrada en la Base de Datos.
+        400:
+          description: No se ha encontrado la moneda que intenta consultar.
+        500:
+          description: Ha ocurrido un error al momento de consultar una moneda.
   /app/coins/registry:
     post:
       tags: 
@@ -213,6 +227,13 @@ components:
       required: true
       schema:
         type: string
+    code:
+      name: code
+      in: path
+      description: Código de identificación de una moneda.
+      required: true
+      schema:
+          type: string
   schemas:
     BodyUsersRegistry:
       type: object
