@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `tallerdb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `tallerdb`;
 -- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
 --
 -- Host: localhost    Database: tallerdb
@@ -44,7 +42,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Camilo','Torres','camtor','$2a$08$c9zDoznxwKXolRgp98eEkuHg7H4ZHf67Qg7YW8IFzltNPoEkWK1KO','ETH','2021-09-08 05:26:03','2021-09-08 05:26:03'),(2,'Alicia','Sierra','alisier','$2a$08$.OriK.NhSp9uqpoYJaro1eeyWt2FsexzblsTqt6y5/UI26Y2sFb1W','BTC','2021-09-08 05:26:43','2021-09-08 05:26:43'),(3,'Carlos','Sanchez','carsan','$2a$08$8LMmnfjQTG9d/HQLJjENaekMIQwT4xmD6IqxAC0VvTWgmXUOOCZBW','ADA','2021-09-08 05:27:25','2021-09-08 05:27:25'),(4,'Rodrigo','Alzate','rodzate','$2a$08$gX/Zh7iNClN/VL7eFPTO1uRnQIl0V0k.Yy7cCF06qIunlIagdgn3u','BNB','2021-09-08 05:28:59','2021-09-08 05:28:59');
+INSERT INTO `users` VALUES (1,'Camilo','Torres','camtor','$2a$08$c9zDoznxwKXolRgp98eEkuHg7H4ZHf67Qg7YW8IFzltNPoEkWK1KO','BTC','2021-09-08 05:26:03','2021-10-12 04:33:39'),(2,'Alicia','Sierra','alisier','$2a$08$.OriK.NhSp9uqpoYJaro1eeyWt2FsexzblsTqt6y5/UI26Y2sFb1W','BTC','2021-09-08 05:26:43','2021-09-08 05:26:43'),(3,'Carlos','Sanchez','carsan','$2a$08$8LMmnfjQTG9d/HQLJjENaekMIQwT4xmD6IqxAC0VvTWgmXUOOCZBW','ADA','2021-09-08 05:27:25','2021-09-08 05:27:25'),(4,'Rodrigo','Alzate','rodzate','$2a$08$gX/Zh7iNClN/VL7eFPTO1uRnQIl0V0k.Yy7cCF06qIunlIagdgn3u','BNB','2021-09-08 05:28:59','2021-09-08 05:28:59');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-09-08  0:57:48
+-- Dump completed on 2021-10-11 23:51:32

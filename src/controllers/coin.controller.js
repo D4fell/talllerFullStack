@@ -3,6 +3,8 @@
 const db = require('../models');
 const COIN = db.coin;
 const Op = db.Sequelize.Op;
+const { braveCoinList, getPriceCoin } = require('../services/braveNewCoin');
+const _ = require('lodash')
 
 exports.getCoins = (req, res) => {
     
@@ -55,4 +57,50 @@ exports.createCoin = (req, res) => {
     .catch(error => {
         res.status(500).send({message: error.message || 'Ha ocurrido un error creando la moneda!'})
     })
+}
+
+exports.populateCoins = async (req, res) => {
+    let coinList = await braveCoinList();
+
+    _.map(coinList, async coin =>{
+        const coinBrave = {
+            code: coin.symbol,
+            name: coin.name,
+            source: coin.url,
+            type: coin.type,
+            status: coin.status,
+            braveCoinId: coin.id,
+            price:await getPriceCoin(coin.id)
+        }
+
+        COIN.create(coinBrave)
+        .then(coinData => {
+            res.status(200).send({ message: 'Se han importado las monedas correctamente' });
+        })
+        .catch(error => {
+            res.status(500).send({message: error || 'Ha ocurrido un error obteniendo la información de las monedas!.'})
+        })
+    })
+    /*for (const coin of coinList) {
+        
+        const coinBrave = {
+            code: coin.symbol,
+            name: coin.name,
+            source: coin.url,
+            type: coin.type,
+            status: coin.status,
+            braveCoinId: coin.id,
+            price:await getPriceCoin(coin.id)
+        }
+
+        console.log(coinBrave,'COIN---BRAVE');
+    
+        COIN.create(coinBrave)
+        .then(coinData => {
+            res.status(200).send({ message: 'Se han importado las monedas correctamente' });
+        })
+        .catch(error => {
+            res.status(500).send({message: error.message || 'Ha ocurrido un error creando la moneda!'})
+        })
+    }*/
 }

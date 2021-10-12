@@ -166,6 +166,17 @@ paths:
           description: No se ha encontrado la moneda que intenta consultar.
         500:
           description: Ha ocurrido un error al momento de consultar una moneda.
+  /app/coins/populateCoins:
+    get:
+      tags:
+        - coins
+      summary: Se obtiene toda la información de las monedas.
+      description: Se consume el servicio expuesto por BraveNewCoin y obtiene toda la información de las monedas.
+      responses:
+        200:
+          description: Se han importado las monedas correctamente.
+        500:
+          description: Ha ocurrido un error obteniendo la información de las monedas!.
   /app/coins/registry:
     post:
       tags: 

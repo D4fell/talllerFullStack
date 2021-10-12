@@ -6,25 +6,17 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         allowNull: false,
         validate: {
-          isAlpha: {
-            msg: 'El campo code solo permite letras'
-          },
           sizeValidator(value) {
-            if (value.length < 2 || value.length > 10) {
-              throw new Error('El campo code debe estar en el rango entre 2 y 10 caracteres');
+            if (value.length < 1 || value.length > 10) {
+              throw new Error('El campo code debe estar en el rango entre 1 y 10 caracteres');
             }
           }
         }
       },
       price: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
         allowNull: false,
-        notEmpty: true,
-        validate: {
-          isNumeric: {
-            msg: 'El campo price solo permite números'
-          }
-        }
+        notEmpty: true
       },
       name: {
         type: Sequelize.STRING,
@@ -37,6 +29,15 @@ module.exports = (sequelize, Sequelize) => {
         }
       },
       source: {
+        type: Sequelize.STRING
+      },
+      type: {
+        type: Sequelize.STRING
+      },
+      status: {
+        type: Sequelize.STRING
+      },
+      braveCoinId: {
         type: Sequelize.STRING
       }
     });
