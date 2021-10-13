@@ -2,6 +2,7 @@
 
 const dataBaseCfg = require('../../config/db.config');
 const Sequelize = require('sequelize');
+const fs = require('fs')
 
 const sequelize = new Sequelize(dataBaseCfg.DB, dataBaseCfg.USER, dataBaseCfg.PASSWORD, {
     host: dataBaseCfg.HOST,
@@ -14,7 +15,13 @@ const sequelize = new Sequelize(dataBaseCfg.DB, dataBaseCfg.USER, dataBaseCfg.PA
       acquire: dataBaseCfg.pool.acquire,
       idle: dataBaseCfg.pool.idle
     },
-    ssl: true
+    ssl: true,
+    dialectOptions: {
+      encrypt: true,
+      ssl: {
+          ca: fs.readFileSync('./BaltimoreCyberTrustRoot.crt.pem')
+      }
+  }
   });
   
   const db = {};
