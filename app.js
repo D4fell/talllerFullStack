@@ -30,6 +30,10 @@ app.use('/app/users', user);
 app.use('/app/coins', coin);
 app.use('/app/auth', auth);
 
+app.get('/',(req,res) => {
+  res.status(200).send({message:'API Taller FullStack Corriendo exitosamente'});
+})
+
 app.post('/test', async (req, res) => {
   res.status(200).send({message:'Exitoso!!!'});
 })
