@@ -13,7 +13,8 @@ const sequelize = new Sequelize(dataBaseCfg.DB, dataBaseCfg.USER, dataBaseCfg.PA
       min: dataBaseCfg.pool.min,
       acquire: dataBaseCfg.pool.acquire,
       idle: dataBaseCfg.pool.idle
-    }
+    },
+    ssl: true
   });
   
   const db = {};

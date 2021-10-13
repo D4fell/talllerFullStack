@@ -1,8 +1,8 @@
 'use strict'
 
 module.exports = {
-    HOST: 'localhost',
-    USER: 'root',
+    HOST: 'talllerdb.mysql.database.azure.com',
+    USER: 'tallerdb@talllerdb',
     PASSWORD: '123456789Abc',
     DB: 'tallerDB',
     dialect: 'mysql',
